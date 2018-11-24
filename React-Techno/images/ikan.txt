@@ -1,0 +1,45 @@
+- Ikan Mas 
+suhu: 20-25 C
+ph : 7-8
+
+- Patin 
+suhu : 28-32 C
+ph : 6-7
+
+- Bawal 
+suhu : 25-30 C
+ph : 7-8
+
+- Gurame 
+suhu: 24-28 C
+ph : 6.5-8
+
+- Nila 
+suhu: 25-30 C
+ph : 6.5-8.5
+
+- Lele 
+suhu : 25-30 C
+ph : 6.5-8
+
+-kerapu
+suhu : 24-32c
+ph : 7-9
+salinitas : 30-33ppt
+
+-kakap
+ph : 7-8
+suhu : 27-32
+salinitas : 15-35ppt
+
+
+-gabus
+ph :6-7.5
+
+-sepat
+suhu :
+ph :
+
+-biawan 
+suhu :
+ph :
