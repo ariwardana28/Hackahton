@@ -41,7 +41,7 @@ class Kartu extends React.Component {
                 alert('Ini Tombol', 'Ini juga');
               }}
               title="Share"
-              color="black"
+              color="#FEB557"
             />
             <CardButton onPress={() => {}} title="Explore" color="#FEB557" />
           </CardAction>
@@ -67,8 +67,8 @@ class LogoTitle extends React.Component {
   render() {
     return (
       <Image
-        source={require('./images/logo.png')}
-        style={{ width: 150, height: 30 }}
+        source={require('./images/tekno1.png')}
+        style={{ width: 200, height: 30 }}
       />
     );
   }
@@ -77,56 +77,80 @@ class LogoTitle extends React.Component {
 class HomeScreen extends React.Component {
   static navigationOptions = {
     headerTitle: <LogoTitle />,
-    headerRight: (
-      <Button
-        onPress={() => alert('This is a button!')}
-        title="Info"
-        color="lightseagreen"
-      />
-    ),
     headerStyle: {
       backgroundColor: 'lightseagreen',
     },
     headerTintColor: '#fff',
     headerTitleStyle: {
       fontWeight: 'bold',
+      justifyContent: 'center',
+      alignContent: 'center',
+      alignItems: 'center',
     },
   };
   render() {
     return (
+      <ScrollView>
       <View style={styles.container}>
-        <View style={{flex:1,}}>
+        <View style={{ flex: 1 }}>
+          <View style={{ left: 20, flexDirection: 'row' }}>
+            <Image
+              style={{ width: 100, height: 100 }}
+              source={require('./images/graph.png')}
+            />
+            <Image
+              style={{ width: 100, height: 100, left: 120 }}
+              source={require('./images/pond.png')}
+            />
+          </View>
+          <View style={{ left: 20, flexDirection: 'row' }}>
+            <Text style={{ textAlign: 'center' }}>
+              pH
+              {'\n'}
+              Aman Terkendali
+            </Text>
+            <Text style={{ left: 110, textAlign: 'center' }}>
+              Kejernihan Air
+              {'\n'}
+              Aman Untuk Ikan
+            </Text>
+          </View>
+          <View
+            style={{
+              flex:1,
+              flexDirection: 'column',
+              justifyContent: 'center',
+                alignContent: 'center',
+                alignItems: 'center',
+                paddingTop: 50
+            }}>
+            <Image
+              style={{
+                width: 100,
+                height: 100,
+                
+              }}
+              source={require('./images/fish.png')}
+            />
+            <Text style={{ textAlign: 'center' }}>
+              pH {'\n'}
+              Aman
+            </Text>
+          </View>
           <PricingCard
             color="#4f9deb"
             title="Measure"
-            //price="0"
-            info={['Kadar pH, TDS All Core Features']}
+            info={['Mengukur Kadar pH dan TDS Kolam Anda']}
             button={{ title: 'Ukur', icon: 'settings-remote' }}
             onButtonPress={() => alert('Kadar pH : 5,\nTDS : 100')}
           />
-          <Avatar
-  size="medium"
-  source={{uri: "https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg"}}
-  onPress={() => console.log("Works!")}
-  activeOpacity={0.7}
-/>
+          <Button
+            title="Detail Ikan"
+            onPress={() => this.props.navigation.navigate('Kart')}
+          />
         </View>
-        {/*<Button //style={{paddingVertical: 20,}}
-          title="Go to Settings"
-          onPress={() => this.props.navigation.navigate('Settings')}
-        />
-        <Button
-          title="Go to Details"
-          onPress={() => this.props.navigation.navigate('Details')}
-        />
-        <Icon
-          raised
-          name="heartbeat"
-          type="font-awesome"
-          color="#f50"
-          onPress={() => alert('hello')}
-        />*/}
       </View>
+      </ScrollView>
     );
   }
 }
@@ -231,20 +255,4 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     size: 50,
   },
-  /*Tombol1: {
-    flex: 1,
-    position: 'absolute',
-    bottom: 150,
-    flexDirection: 'column',
-    justifyContent: 'space-evenly',
-    paddingHorizontal: 20
-  },
-  Tombol2: {
-    flex:1,
-    position: 'absolute',
-    bottom: 100,
-    flexDirection: 'column',
-    justifyContent: 'space-evenly',
-    paddingHorizontal: 20
-  }*/
 });
