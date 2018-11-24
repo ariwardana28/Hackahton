@@ -1,10 +1,28 @@
 import React from 'react';
-import { Button, Text, View, Image, ScrollView, StyleSheet } from 'react-native';
+import {
+  Button,
+  Text,
+  View,
+  Image,
+  ScrollView,
+  StyleSheet,
+} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { createStackNavigator, createBottomTabNavigator, createAppContainer } from 'react-navigation';
-import { Card, CardTitle, CardContent, CardAction, CardButton, CardImage } from 'react-native-cards';
+import {
+  createStackNavigator,
+  createBottomTabNavigator,
+  createAppContainer,
+} from 'react-navigation';
+import {
+  Card,
+  CardTitle,
+  CardContent,
+  CardAction,
+  CardButton,
+  CardImage,
+} from 'react-native-cards';
 import AwesomeAlert from 'react-native-awesome-alerts';
-import { Icon, PricingCard } from 'react-native-elements'
+import { Icon, PricingCard, Avatar } from 'react-native-elements';
 
 class Kartu extends React.Component {
   render() {
@@ -15,23 +33,17 @@ class Kartu extends React.Component {
             source={require('./images/ikan-bandeng.jpg')}
             title="Top 10 South African beaches"
           />
-          <CardTitle
-            subtitle="Number 6"
-          />
+          <CardTitle subtitle="Number 6" />
           <CardContent text="Clifton, Western Cape" />
-          <CardAction
-            separator={true}
-            inColumn={false}>
+          <CardAction separator={true} inColumn={false}>
             <CardButton
-              onPress={() => { alert('Ini Tombol', 'Ini juga') }}
+              onPress={() => {
+                alert('Ini Tombol', 'Ini juga');
+              }}
               title="Share"
               color="black"
             />
-            <CardButton
-              onPress={() => { }}
-              title="Explore"
-              color="#FEB557"
-            />
+            <CardButton onPress={() => {}} title="Explore" color="#FEB557" />
           </CardAction>
         </Card>
         <Card title="Ikan itu Iwak">
@@ -39,27 +51,15 @@ class Kartu extends React.Component {
             source={require('./images/ikan-bandeng.jpg')}
             title="Top 10 South African beaches"
           />
-          <CardTitle
-            subtitle="Number 6"
-          />
+          <CardTitle subtitle="Number 6" />
           <CardContent text="Clifton, Western Cape" />
-          <CardAction
-            separator={true}
-            inColumn={false}>
-            <CardButton
-              onPress={() => { }}
-              title="Share"
-              color="#FEB557"
-            />
-            <CardButton
-              onPress={() => { }}
-              title="Explore"
-              color="#FEB557"
-            />
+          <CardAction separator={true} inColumn={false}>
+            <CardButton onPress={() => {}} title="Share" color="#FEB557" />
+            <CardButton onPress={() => {}} title="Explore" color="#FEB557" />
           </CardAction>
         </Card>
       </ScrollView>
-    )
+    );
   }
 }
 
@@ -95,40 +95,37 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Home!</Text>
-
+        <View style={{flex:1,}}>
+          <PricingCard
+            color="#4f9deb"
+            title="Measure"
+            //price="0"
+            info={['Kadar pH, TDS All Core Features']}
+            button={{ title: 'Ukur', icon: 'settings-remote' }}
+            onButtonPress={() => alert('Kadar pH : 5,\nTDS : 100')}
+          />
+          <Avatar
+  size="medium"
+  source={{uri: "https://s3.amazonaws.com/uifaces/faces/twitter/kfriedson/128.jpg"}}
+  onPress={() => console.log("Works!")}
+  activeOpacity={0.7}
+/>
+        </View>
         {/*<Button //style={{paddingVertical: 20,}}
           title="Go to Settings"
           onPress={() => this.props.navigation.navigate('Settings')}
         />
-
         <Button
           title="Go to Details"
           onPress={() => this.props.navigation.navigate('Details')}
-        />*/}
+        />
         <Icon
           raised
-          name='heartbeat'
-          type='font-awesome'
-          color='#f50'
+          name="heartbeat"
+          type="font-awesome"
+          color="#f50"
           onPress={() => alert('hello')}
-        />
-        <PricingCard
-          color='#4f9deb'
-          title='pH'
-          price='0'
-          info={['Kadar pH', 'Basic Support', 'All Core Features']}
-          button={{ title: 'Ukur', icon: 'settings-remote' }}
-          onButtonPress={() => alert('hello')}
-        />
-        <PricingCard
-          color='#4f9deb'
-          title='Salinitas'
-          price='0'
-          info={['Kadar Salinitas', 'Basic Support', 'All Core Features']}
-          button={{ title: 'Ukur', icon: 'settings-remote' }}
-          onButtonPress={() => alert('hello')}
-        />
+        />*/}
       </View>
     );
   }
@@ -194,43 +191,45 @@ const SettingsStack = createStackNavigator({
   Kartu: { screen: Kartu },
 });
 
-export default createAppContainer(createBottomTabNavigator(
-  {
-    Home: { screen: HomeStack },
-    Settings: { screen: SettingsStack },
-    Kartu: { screen: Kartu },
-  },
-  {
-    defaultNavigationOptions: ({ navigation }) => ({
-      tabBarIcon: ({ focused, tintColor }) => {
-        const { routeName } = navigation.state;
-        let iconName;
-        if (routeName === 'Home') {
-          iconName = `ios-home`;
-        } else if (routeName === 'Settings') {
-          iconName = `ios-options`;
-        } else if (routeName === 'Kartu') {
-          iconName = 'ios-options';
-        }
-
-        // You can return any component that you like here! We usually use an
-        // icon component from react-native-vector-icons
-        return <Ionicons name={iconName} size={25} color={tintColor} />;
-      },
-    }),
-    tabBarOptions: {
-      activeTintColor: 'lightseagreen',
-      inactiveTintColor: 'gray',
+export default createAppContainer(
+  createBottomTabNavigator(
+    {
+      Home: { screen: HomeStack },
+      Settings: { screen: SettingsStack },
+      Kartu: { screen: Kartu },
     },
-  }
-));
+    {
+      defaultNavigationOptions: ({ navigation }) => ({
+        tabBarIcon: ({ focused, tintColor }) => {
+          const { routeName } = navigation.state;
+          let iconName;
+          if (routeName === 'Home') {
+            iconName = `ios-home`;
+          } else if (routeName === 'Settings') {
+            iconName = `ios-options`;
+          } else if (routeName === 'Kartu') {
+            iconName = 'ios-options';
+          }
+
+          // You can return any component that you like here! We usually use an
+          // icon component from react-native-vector-icons
+          return <Ionicons name={iconName} size={25} color={tintColor} />;
+        },
+      }),
+      tabBarOptions: {
+        activeTintColor: 'lightseagreen',
+        inactiveTintColor: 'gray',
+      },
+    }
+  )
+);
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    size: 50
+    size: 50,
   },
   /*Tombol1: {
     flex: 1,
@@ -248,4 +247,4 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     paddingHorizontal: 20
   }*/
-})
+});
