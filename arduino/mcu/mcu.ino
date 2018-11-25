@@ -1,6 +1,8 @@
+
+#include <ESP8266HTTPClient.h>
 #include <ESP8266WiFi.h>
 
-const char* ssid="niffia";
+const char* ssid = "niffia";
 const char* password = "rosnaini";
 float calibration = 0.00; //change this value to calibrate
 const int analogInPin = A0;
@@ -9,21 +11,21 @@ unsigned long int avgValue;
 float b;
 int buf[10], temp;
 void setup() {
-  
+
 
   Serial.begin(115200);
   Serial.println();
   Serial.print("Wifi connecting to ");
   Serial.println( ssid );
 
-  WiFi.begin(ssid,password);
+  WiFi.begin(ssid, password);
 
   Serial.println();
   Serial.print("Connecting");
 
-  while( WiFi.status() != WL_CONNECTED ){
-      delay(500);
-      Serial.print(".");        
+  while ( WiFi.status() != WL_CONNECTED ) {
+    delay(500);
+    Serial.print(".");
   }
 
   Serial.println();
@@ -36,6 +38,7 @@ void setup() {
 
 
 void loop() {
+
   for (int i = 0; i < 10; i++)
   {
     buf[i] = analogRead(analogInPin);
@@ -60,7 +63,11 @@ void loop() {
   float phValue = -5.70 * pHVol + calibration;
   Serial.print("sensor = ");
   Serial.println(phValue);
-
-  delay(500);
+  HTTPClient http;
+  http.begin("http://hackthon1.politanisamarinda.ac.id/api/hasil");
+  http.addHeader("Content-Type", "application/x-www-form-urlencoded");
+  http.POST("unit_id=1&jenis_parameter_id=1&value=" + String(phValue));
+  http.writeToStream(&Serial);
+  delay(1000);
 }
 
